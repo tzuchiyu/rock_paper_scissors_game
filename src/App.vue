@@ -1,6 +1,10 @@
 <template>
   <div id="app">
     <h1>剪刀石頭布</h1>
+    <div class="score">
+      <p>你的得分: {{ userScore }}</p>
+      <p>電腦的得分: {{ computerScore }}</p>
+    </div>
     <button @click="play('🪨')">🪨</button>
     <button @click="play('🖐️')">🖐️</button>
     <button @click="play('✂️')">✂️</button>
@@ -21,6 +25,8 @@ export default {
       result: null,
       userChoice: null,
       computerChoice: null,
+      userScore: 0,
+      computerScore: 0,
     };
   },
   methods: {
@@ -36,8 +42,10 @@ export default {
         (userChoice === '✂️' && computerChoice === '🖐️')
       ) {
         this.result = '你贏了！';
+        this.userScore++;
       } else {
         this.result = '你輸了！';
+        this.computerScore++;
       }
 
       this.userChoice = userChoice;
@@ -117,4 +125,14 @@ export default {
   .reset-button:hover {
     background-color: #d32f2f;
   }
+
+  
+.score {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.score p {
+  margin: 5px;
+}
 </style>
